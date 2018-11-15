@@ -1,0 +1,3 @@
+package opslite;
+
+@license(LGPL);
