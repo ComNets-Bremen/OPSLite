@@ -72,7 +72,13 @@ class KHeraldApp : public cSimpleModule
         simsignal_t likedDataBytesReceivedSignal;
         simsignal_t nonLikedDataBytesReceivedSignal;
         simsignal_t duplicateDataBytesReceivedSignal;
-};
+        simsignal_t totalDataBytesReceivedSignal;
 
+        simsignal_t likedDataBytesReceivableByAllNodesSignal;
+        simsignal_t nonLikedDataBytesReceivableByAllNodesSignal;
+        simsignal_t totalDataBytesReceivableByAllNodesSignal;
+
+        simsignal_t dataDelaySignal;
+};
 
 #endif /* KHERALDAPP_H_ */

@@ -37,6 +37,8 @@
  * 
  *     int hopsTravelled = 0;
  * 
+ *     simtime_t injectedTime;
+ * 
  *     // destination oriented delivery specific fields
  *     string originatorNodeName;
  *     string finalDestinationNodeName;
@@ -77,6 +79,7 @@ class KDataMsg : public ::omnetpp::cPacket
     int realPayloadSize;
     int realPacketSize;
     int hopsTravelled;
+    ::omnetpp::simtime_t injectedTime;
     ::omnetpp::opp_string originatorNodeName;
     ::omnetpp::opp_string finalDestinationNodeName;
     bool destinationOriented;
@@ -121,6 +124,8 @@ class KDataMsg : public ::omnetpp::cPacket
     virtual void setRealPacketSize(int realPacketSize);
     virtual int getHopsTravelled() const;
     virtual void setHopsTravelled(int hopsTravelled);
+    virtual ::omnetpp::simtime_t getInjectedTime() const;
+    virtual void setInjectedTime(::omnetpp::simtime_t injectedTime);
     virtual const char * getOriginatorNodeName() const;
     virtual void setOriginatorNodeName(const char * originatorNodeName);
     virtual const char * getFinalDestinationNodeName() const;
@@ -139,7 +144,7 @@ inline void doParsimPacking(omnetpp::cCommBuffer *b, const KDataMsg& obj) {obj.p
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, KDataMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>KOPSMsg.msg:58</tt> by nedtool.
+ * Class generated from <tt>KOPSMsg.msg:60</tt> by nedtool.
  * <pre>
  * packet KSummaryVectorMsg
  * {
@@ -209,7 +214,7 @@ inline void doParsimPacking(omnetpp::cCommBuffer *b, const KSummaryVectorMsg& ob
 inline void doParsimUnpacking(omnetpp::cCommBuffer *b, KSummaryVectorMsg& obj) {obj.parsimUnpack(b);}
 
 /**
- * Class generated from <tt>KOPSMsg.msg:83</tt> by nedtool.
+ * Class generated from <tt>KOPSMsg.msg:85</tt> by nedtool.
  * <pre>
  * packet KDataRequestMsg
  * {

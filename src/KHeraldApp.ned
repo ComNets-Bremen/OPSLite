@@ -38,6 +38,13 @@ simple KHeraldApp
         @signal[likedDataBytesReceived](type=long);
         @signal[nonLikedDataBytesReceived](type=long);
         @signal[duplicateDataBytesReceived](type=long);
+        @signal[totalDataBytesReceived](type=long);
+
+        @signal[likedDataBytesReceivableByAllNodes](type=long);
+        @signal[nonLikedDataBytesReceivableByAllNodes](type=long);
+        @signal[totalDataBytesReceivableByAllNodes](type=long);
+
+        @signal[dataDelay](type=simtime_t);
 
     gates:
 

@@ -95,6 +95,13 @@ void KHeraldApp::initialize(int stage)
         likedDataBytesReceivedSignal = registerSignal("likedDataBytesReceived");
         nonLikedDataBytesReceivedSignal = registerSignal("nonLikedDataBytesReceived");
         duplicateDataBytesReceivedSignal = registerSignal("duplicateDataBytesReceived");
+        likedDataBytesReceivableByAllNodesSignal = registerSignal("likedDataBytesReceivableByAllNodes");
+        nonLikedDataBytesReceivableByAllNodesSignal = registerSignal("nonLikedDataBytesReceivableByAllNodes");
+
+        totalDataBytesReceivedSignal = registerSignal("totalDataBytesReceived");
+        totalDataBytesReceivableByAllNodesSignal = registerSignal("totalDataBytesReceivableByAllNodes");
+
+        dataDelaySignal = registerSignal("dataDelay");
 
     } else {
         EV_FATAL << KHERALDAPP_SIMMODULEINFO << "Something is radically wrong\n";
@@ -147,7 +154,17 @@ void KHeraldApp::handleMessage(cMessage *msg)
         dataMsg->setMsgType(0);
         dataMsg->setValidUntilTime(ttl);
 
+        dataMsg->setInjectedTime(simTime().dbl());
+
         send(dataMsg, "lowerLayerOut");
+
+        // emit stat signals
+        if (myLikenesses[nextGenerationNotification] == 100) {
+            emit(likedDataBytesReceivableByAllNodesSignal, (1 * totalNumNodes * dataSizeInBytes));
+        } else {
+            emit(nonLikedDataBytesReceivableByAllNodesSignal, (1 * totalNumNodes * dataSizeInBytes));
+        }
+        emit(totalDataBytesReceivableByAllNodesSignal, (1 * totalNumNodes * dataSizeInBytes));
 
         // schedule again after a complete round robin of all nodes
         nextGenerationNotification += totalNumNodes;
@@ -171,6 +188,8 @@ void KHeraldApp::handleMessage(cMessage *msg)
             } else {
                 emit(nonLikedDataBytesReceivedSignal, (long) dataSizeInBytes);
             }
+            emit(totalDataBytesReceivedSignal, (long) dataSizeInBytes);
+            emit(dataDelaySignal, (simTime().dbl() - dataMsg->getInjectedTime()));
         }
 
         delete msg;

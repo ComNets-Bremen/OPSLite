@@ -9,18 +9,49 @@ network OPSLiteNetwork
 
         // statistics
         // from application layer
-        @statistic[likedDataBytesReceivedSum](source=sum(likedDataBytesReceived);record=max,last,vector,histogram);
-        @statistic[nonLikedDataBytesReceivedSum](source=sum(nonLikedDataBytesReceived);record=max,last,vector,histogram);
-        @statistic[duplicateDataBytesReceivedSum](source=sum(duplicateDataBytesReceived);record=max,last,vector,histogram);
+        // stat: liked data bytes received by all nodes
+        @statistic[likedDataBytesReceivedSum](source=sum(likedDataBytesReceived);record=max,last,vector);
+
+        // stat: non-liked data bytes received by all nodes
+        @statistic[nonLikedDataBytesReceivedSum](source=sum(nonLikedDataBytesReceived);record=max,last,vector);
+
+        // stat: duplicate (liked & non-liked) data bytes received by all nodes
+        @statistic[duplicateDataBytesReceivedSum](source=sum(duplicateDataBytesReceived);record=max,last,vector);
+
+        // stat: liked data bytes that are possible to be received by all nodes
+        @statistic[likedDataBytesReceivableByAllNodesSum](source=sum(likedDataBytesReceivableByAllNodes);record=max,last,vector);
+
+        // stat: non-liked data bytes that are possible to be received by all nodes
+        @statistic[nonLikedDataBytesReceivableByAllNodesSum](source=sum(nonLikedDataBytesReceivableByAllNodes);record=max,last,vector);
+
+        // stat: delivery delay of data (liked and non-liked) by all nodes
+        @statistic[dataDelay](source=dataDelay;record=max,min,mean,vector,histogram);
+
+        // stat: delivery ratio of data (liked and non-liked) by all nodes
+        @statistic[deliveryRatio](source=sum(totalDataBytesReceived)/sum(totalDataBytesReceivableByAllNodes);record=max,min,vector);
+
+
+        // from forwarding layer -> epidemic routing
+        // stat: data bytes received by all nodes in the network 
+        @statistic[dataBytesReceivedSum](source=sum(dataBytesReceived);record=max,last,vector);
         
-        // from forwarding layer
-        @statistic[dataBytesReceivedSum](source=sum(dataBytesReceived);record=max,last,vector,histogram);
-        @statistic[sumVecBytesReceivedSum](source=sum(sumVecBytesReceived);record=max,last,vector,histogram);
-        @statistic[dataReqBytesReceivedSum](source=sum(dataReqBytesReceived);record=max,last,vector,histogram);
-        @statistic[totalBytesReceivedSum](source=sum(totalBytesReceived);record=max,last,vector,histogram);
-        @statistic[cacheBytesRemovedSum](source=sum(cacheBytesRemoved);record=max,last,vector,histogram);
-        @statistic[cacheBytesAddedSum](source=sum(cacheBytesAdded);record=max,last,vector,histogram);
-        @statistic[cacheBytesUpdatedSum](source=sum(cacheBytesUpdated);record=max,last,vector,histogram);         
+        // stat: summary vectors bytes received by all nodes
+        @statistic[sumVecBytesReceivedSum](source=sum(sumVecBytesReceived);record=max,last,vector);
+
+        // stat: data request bytes received by all nodes
+        @statistic[dataReqBytesReceivedSum](source=sum(dataReqBytesReceived);record=max,last,vector);
+
+        // stat: total bytes received by all nodes
+        @statistic[totalBytesReceivedSum](source=sum(totalBytesReceived);record=max,last,vector);
+
+        // stat: cache removals in bytes by all nodes
+        @statistic[cacheBytesRemovedSum](source=sum(cacheBytesRemoved);record=max,last,vector);
+
+        // stat: cache additions in bytes by all nodes
+        @statistic[cacheBytesAddedSum](source=sum(cacheBytesAdded);record=max,last,vector);
+
+        // stat: cache updates in bytes by all nodes
+        @statistic[cacheBytesUpdatedSum](source=sum(cacheBytesUpdated);record=max,last,vector);         
 
     submodules:
 

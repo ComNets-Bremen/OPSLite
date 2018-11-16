@@ -72,6 +72,8 @@ private:
 
         int msgUniqueID;
 
+        simtime_t injectedTime;
+
         double createdTime;
         double updatedTime;
         double lastAccessedTime;

@@ -29,6 +29,8 @@ packet KDataMsg {
     
     int hopsTravelled = 0;
 
+    simtime_t injectedTime;
+
     // destination oriented delivery specific fields
     string originatorNodeName;
     string finalDestinationNodeName;

@@ -187,6 +187,7 @@ KDataMsg::KDataMsg(const char *name, short kind) : ::omnetpp::cPacket(name,kind)
     this->realPayloadSize = 0;
     this->realPacketSize = 0;
     this->hopsTravelled = 0;
+    this->injectedTime = 0;
     this->destinationOriented = false;
     this->goodnessValue = 50;
     this->hopCount = 255;
@@ -221,6 +222,7 @@ void KDataMsg::copy(const KDataMsg& other)
     this->realPayloadSize = other.realPayloadSize;
     this->realPacketSize = other.realPacketSize;
     this->hopsTravelled = other.hopsTravelled;
+    this->injectedTime = other.injectedTime;
     this->originatorNodeName = other.originatorNodeName;
     this->finalDestinationNodeName = other.finalDestinationNodeName;
     this->destinationOriented = other.destinationOriented;
@@ -242,6 +244,7 @@ void KDataMsg::parsimPack(omnetpp::cCommBuffer *b) const
     doParsimPacking(b,this->realPayloadSize);
     doParsimPacking(b,this->realPacketSize);
     doParsimPacking(b,this->hopsTravelled);
+    doParsimPacking(b,this->injectedTime);
     doParsimPacking(b,this->originatorNodeName);
     doParsimPacking(b,this->finalDestinationNodeName);
     doParsimPacking(b,this->destinationOriented);
@@ -263,6 +266,7 @@ void KDataMsg::parsimUnpack(omnetpp::cCommBuffer *b)
     doParsimUnpacking(b,this->realPayloadSize);
     doParsimUnpacking(b,this->realPacketSize);
     doParsimUnpacking(b,this->hopsTravelled);
+    doParsimUnpacking(b,this->injectedTime);
     doParsimUnpacking(b,this->originatorNodeName);
     doParsimUnpacking(b,this->finalDestinationNodeName);
     doParsimUnpacking(b,this->destinationOriented);
@@ -369,6 +373,16 @@ int KDataMsg::getHopsTravelled() const
 void KDataMsg::setHopsTravelled(int hopsTravelled)
 {
     this->hopsTravelled = hopsTravelled;
+}
+
+::omnetpp::simtime_t KDataMsg::getInjectedTime() const
+{
+    return this->injectedTime;
+}
+
+void KDataMsg::setInjectedTime(::omnetpp::simtime_t injectedTime)
+{
+    this->injectedTime = injectedTime;
 }
 
 const char * KDataMsg::getOriginatorNodeName() const
@@ -496,7 +510,7 @@ const char *KDataMsgDescriptor::getProperty(const char *propertyname) const
 int KDataMsgDescriptor::getFieldCount() const
 {
     omnetpp::cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 16+basedesc->getFieldCount() : 16;
+    return basedesc ? 17+basedesc->getFieldCount() : 17;
 }
 
 unsigned int KDataMsgDescriptor::getFieldTypeFlags(int field) const
@@ -524,8 +538,9 @@ unsigned int KDataMsgDescriptor::getFieldTypeFlags(int field) const
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<16) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<17) ? fieldTypeFlags[field] : 0;
 }
 
 const char *KDataMsgDescriptor::getFieldName(int field) const
@@ -547,6 +562,7 @@ const char *KDataMsgDescriptor::getFieldName(int field) const
         "realPayloadSize",
         "realPacketSize",
         "hopsTravelled",
+        "injectedTime",
         "originatorNodeName",
         "finalDestinationNodeName",
         "destinationOriented",
@@ -554,7 +570,7 @@ const char *KDataMsgDescriptor::getFieldName(int field) const
         "messageID",
         "hopCount",
     };
-    return (field>=0 && field<16) ? fieldNames[field] : nullptr;
+    return (field>=0 && field<17) ? fieldNames[field] : nullptr;
 }
 
 int KDataMsgDescriptor::findField(const char *fieldName) const
@@ -571,12 +587,13 @@ int KDataMsgDescriptor::findField(const char *fieldName) const
     if (fieldName[0]=='r' && strcmp(fieldName, "realPayloadSize")==0) return base+7;
     if (fieldName[0]=='r' && strcmp(fieldName, "realPacketSize")==0) return base+8;
     if (fieldName[0]=='h' && strcmp(fieldName, "hopsTravelled")==0) return base+9;
-    if (fieldName[0]=='o' && strcmp(fieldName, "originatorNodeName")==0) return base+10;
-    if (fieldName[0]=='f' && strcmp(fieldName, "finalDestinationNodeName")==0) return base+11;
-    if (fieldName[0]=='d' && strcmp(fieldName, "destinationOriented")==0) return base+12;
-    if (fieldName[0]=='g' && strcmp(fieldName, "goodnessValue")==0) return base+13;
-    if (fieldName[0]=='m' && strcmp(fieldName, "messageID")==0) return base+14;
-    if (fieldName[0]=='h' && strcmp(fieldName, "hopCount")==0) return base+15;
+    if (fieldName[0]=='i' && strcmp(fieldName, "injectedTime")==0) return base+10;
+    if (fieldName[0]=='o' && strcmp(fieldName, "originatorNodeName")==0) return base+11;
+    if (fieldName[0]=='f' && strcmp(fieldName, "finalDestinationNodeName")==0) return base+12;
+    if (fieldName[0]=='d' && strcmp(fieldName, "destinationOriented")==0) return base+13;
+    if (fieldName[0]=='g' && strcmp(fieldName, "goodnessValue")==0) return base+14;
+    if (fieldName[0]=='m' && strcmp(fieldName, "messageID")==0) return base+15;
+    if (fieldName[0]=='h' && strcmp(fieldName, "hopCount")==0) return base+16;
     return basedesc ? basedesc->findField(fieldName) : -1;
 }
 
@@ -599,6 +616,7 @@ const char *KDataMsgDescriptor::getFieldTypeString(int field) const
         "int",
         "int",
         "int",
+        "simtime_t",
         "string",
         "string",
         "bool",
@@ -606,7 +624,7 @@ const char *KDataMsgDescriptor::getFieldTypeString(int field) const
         "string",
         "int",
     };
-    return (field>=0 && field<16) ? fieldTypeStrings[field] : nullptr;
+    return (field>=0 && field<17) ? fieldTypeStrings[field] : nullptr;
 }
 
 const char **KDataMsgDescriptor::getFieldPropertyNames(int field) const
@@ -683,12 +701,13 @@ std::string KDataMsgDescriptor::getFieldValueAsString(void *object, int field, i
         case 7: return long2string(pp->getRealPayloadSize());
         case 8: return long2string(pp->getRealPacketSize());
         case 9: return long2string(pp->getHopsTravelled());
-        case 10: return oppstring2string(pp->getOriginatorNodeName());
-        case 11: return oppstring2string(pp->getFinalDestinationNodeName());
-        case 12: return bool2string(pp->getDestinationOriented());
-        case 13: return long2string(pp->getGoodnessValue());
-        case 14: return oppstring2string(pp->getMessageID());
-        case 15: return long2string(pp->getHopCount());
+        case 10: return simtime2string(pp->getInjectedTime());
+        case 11: return oppstring2string(pp->getOriginatorNodeName());
+        case 12: return oppstring2string(pp->getFinalDestinationNodeName());
+        case 13: return bool2string(pp->getDestinationOriented());
+        case 14: return long2string(pp->getGoodnessValue());
+        case 15: return oppstring2string(pp->getMessageID());
+        case 16: return long2string(pp->getHopCount());
         default: return "";
     }
 }
@@ -713,12 +732,13 @@ bool KDataMsgDescriptor::setFieldValueAsString(void *object, int field, int i, c
         case 7: pp->setRealPayloadSize(string2long(value)); return true;
         case 8: pp->setRealPacketSize(string2long(value)); return true;
         case 9: pp->setHopsTravelled(string2long(value)); return true;
-        case 10: pp->setOriginatorNodeName((value)); return true;
-        case 11: pp->setFinalDestinationNodeName((value)); return true;
-        case 12: pp->setDestinationOriented(string2bool(value)); return true;
-        case 13: pp->setGoodnessValue(string2long(value)); return true;
-        case 14: pp->setMessageID((value)); return true;
-        case 15: pp->setHopCount(string2long(value)); return true;
+        case 10: pp->setInjectedTime(string2simtime(value)); return true;
+        case 11: pp->setOriginatorNodeName((value)); return true;
+        case 12: pp->setFinalDestinationNodeName((value)); return true;
+        case 13: pp->setDestinationOriented(string2bool(value)); return true;
+        case 14: pp->setGoodnessValue(string2long(value)); return true;
+        case 15: pp->setMessageID((value)); return true;
+        case 16: pp->setHopCount(string2long(value)); return true;
         default: return false;
     }
 }
