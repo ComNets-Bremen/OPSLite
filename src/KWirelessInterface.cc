@@ -93,6 +93,8 @@ void KWirelessInterface::initialize(int stage)
         sendPacketTimeoutEvent = new cMessage("Send Packet Timeout Event");
         sendPacketTimeoutEvent->setKind(KWIRELESSINTERFACE_PKTSEND_EVENT_CODE);
 
+        // setup statistics signals
+        neighbourhoodSizeSignal = registerSignal("neighbourhoodSize");
 
     } else {
         EV_FATAL <<  KWIRELESSINTERFACE_SIMMODULEINFO << "Something is radically wrong\n";
@@ -135,6 +137,9 @@ void KWirelessInterface::handleMessage(cMessage *msg)
             }
             iteratorAllNodeInfo++;
         }
+
+        // emit stat signal
+        emit(neighbourhoodSizeSignal, (long) currentNeighbourNodeInfoList.size());
 
         // if there are neighbours, send message
         if (currentNeighbourNodeInfoList.size() > 0) {

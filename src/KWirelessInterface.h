@@ -68,6 +68,9 @@ private:
     void sendPendingMsg();
     string getDestinationAddress(cMessage *msg);
 
+    // statistics related variable
+    simsignal_t neighbourhoodSizeSignal;
+
 };
 
 

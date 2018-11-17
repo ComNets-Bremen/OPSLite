@@ -53,6 +53,10 @@ network OPSLiteNetwork
         // stat: cache updates in bytes by all nodes
         @statistic[cacheBytesUpdatedSum](source=sum(cacheBytesUpdated);record=max,last,vector);         
 
+		// from wireless layer
+		// stat: size of nodes in the wireless neghbourhood
+		@statistic[neighbourhoodSize](source=neighbourhoodSize;record=min,max,mean,vector);
+		
     submodules:
 
         // nodes of the network

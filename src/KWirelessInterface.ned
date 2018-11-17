@@ -21,7 +21,10 @@ simple KWirelessInterface
 
         // icon
         @display("i=device/card");
-
+ 
+        // statistics and signals
+        @signal[neighbourhoodSize](type=long);
+ 
     gates:
         // interface to the upper layer (which may be the link adaptation layer)
         input upperLayerIn;

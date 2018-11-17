@@ -7,8 +7,9 @@ can be developed and plugged in. OPSLite is a scaled-down, light-weight version 
 [OPS](https://github.com/ComNets-Bremen/OPS), available at Github.
 
 The following sections provide details of the models available and about
-the installtion. Unlike [OPS](https://github.com/ComNets-Bremen/OPS) which was purely
-a command-line simulator, OPSLite is meant to run in the OMNeT++ IDE and also on the command-line.
+the installtion. *Unlike [OPS](https://github.com/ComNets-Bremen/OPS) which was purely
+a command-line simulator, OPSLite is meant to run in the OMNeT++ IDE and as well as on 
+the command-line*.
 
 
 ## Prerequisites
@@ -153,12 +154,16 @@ There are a set of network-level results collected in every simulation run. Here
 7. `cacheBytesUpdatedSum` - Cache updates in bytes by all nodes
 
 
+### Statistics from the Wireless Interface Layer
+
+1. `neighbourhoodSize` - Size of nodes in the wireless neghbourhood
+
 
 ## Important Model Parameters
 
 The following list provides some of the most important parameters of the different models 
-in OPSLite. All these parameters are configurable using the `omnetpp.ini`. Not all parameters 
-are listed here. Please check the respective model's `.ned` file to see all the parameters.
+in OPSLite. All these parameters are configurable using the `omnetpp.ini`. *Not all parameters 
+are listed here*. Please check the respective model's `.ned` file to see all the parameters.
 
 ### Parameters in `OPSLiteNetwork.ned`
 
@@ -166,19 +171,19 @@ are listed here. Please check the respective model's `.ned` file to see all the 
 2. Network level statistics
 
 
-### Parameters in `KHeraldApp`
+### Parameters in `KHeraldApp.ned`
 
 1. `dataGenerationInterval` - Defines how often (in seconds) a data gets injected into the network
 2. `dataSizeInBytes` - The payload size in bytes of a data packet
 
 
-### Parameters in `KEpidemicRoutingLayer`
+### Parameters in `KEpidemicRoutingLayer.ned`
 
 1. `maximumCacheSize` - The size of the cache maintained by each node in bytes
 2. `maximumHopCount` - The maximum hops that a data packet is allowed to travel (be forwarded) before being discarded
 
 
-### Parameters in `KWirelessLayer`
+### Parameters in `KWirelessLayer.ned`
 
 1. `wirelessRange` - The wireless range of each node's wireless interface
 2. `bandwidthBitRate` - Communication bit rate of the wireless interface
