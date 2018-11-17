@@ -1,4 +1,4 @@
-# OPS
+# OPSLite
 The Opportunistic Protocol Simulator, Light (OPSLite, pronounced as oops light!!!) is a set of
 simulation models in OMNeT++ to simulate opportunistic networks. It has a
 modular architecture where different protocols relevant to opportunistic networks
@@ -157,8 +157,8 @@ associated with each layer.
 Help
 ----
 
-If you have any question or clarifications related OMNeT++, please check the documentation provided at the OMNeT++ and
-INET sites. Here are the important documents.
+If you have any question or clarifications related to OMNeT++, please check the documentation provided at the [OMNeT++ site](https://www.omnetpp.org) and
+[INET site](https://inet.omnetpp.org) sites. Here are the important documents.
 
 1. OMNeT++ - [Install Guide](https://www.omnetpp.org/doc/omnetpp/InstallGuide.pdf), 
    [Simulation Manual](https://www.omnetpp.org/doc/omnetpp/SimulationManual.pdf), 
