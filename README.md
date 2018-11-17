@@ -5,9 +5,9 @@ modular architecture where different protocols relevant to opportunistic network
 can be developed and plugged in. OPSLite is a scaled-down, light-weight version of  
 [OPS](https://github.com/ComNets-Bremen/OPS), available at Github.
 
-The following sections provides details of the models available and about
-the installtion. Unlike [OPS](https://github.com/ComNets-Bremen/OPS), OPSLite
-is meant to run in the OMNeT++ IDE.
+The following sections provide details of the models available and about
+the installtion. Unlike [OPS](https://github.com/ComNets-Bremen/OPS) which was purely
+a command-line simulator, OPSLite is meant to run in the OMNeT++ IDE and also on the command-line.
 
 
 Prerequisites
@@ -150,7 +150,7 @@ associated with each layer.
    
 5. Mobility implements the movements of the mobile nodes in the scenarios. It can use any
    of the mobility models vailable in the INET4 Framework. In OPSLite, `omnetpp.ini` is
-   configured to use 'Random Waypoint' mobility model. 
+   configured to use Random Waypoint (`RandomWaypointMobility`) mobility model.
 
 
 
@@ -158,7 +158,7 @@ Help
 ----
 
 If you have any question or clarifications related to OMNeT++, please check the documentation provided at the [OMNeT++ site](https://www.omnetpp.org) and
-[INET site](https://inet.omnetpp.org) sites. Here are the important documents.
+[INET](https://inet.omnetpp.org) sites. Here are the important documents.
 
 1. OMNeT++ - [Install Guide](https://www.omnetpp.org/doc/omnetpp/InstallGuide.pdf), 
    [Simulation Manual](https://www.omnetpp.org/doc/omnetpp/SimulationManual.pdf), 
@@ -167,6 +167,8 @@ If you have any question or clarifications related to OMNeT++, please check the 
 2. INET - [Documentation](https://inet.omnetpp.org/Introduction.html)
 
 3. Results processing in OMNeT++ IDE - Chapter 10 of the [IDE User Guide](https://www.omnetpp.org/doc/omnetpp/UserGuide.pdf)
+
+4. INET Mobility Models - [Node Mobility](https://inet.omnetpp.org/docs/users-guide/ch-mobility.html)
 
 
 Questions or Comments
