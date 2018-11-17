@@ -1,4 +1,5 @@
 # OPSLite
+
 The Opportunistic Protocol Simulator, Light (OPSLite, pronounced as oops light!!!) is a set of
 simulation models in OMNeT++ to simulate opportunistic networks. It has a
 modular architecture where different protocols relevant to opportunistic networks
@@ -10,8 +11,7 @@ the installtion. Unlike [OPS](https://github.com/ComNets-Bremen/OPS) which was p
 a command-line simulator, OPSLite is meant to run in the OMNeT++ IDE and also on the command-line.
 
 
-Prerequisites
--------------
+## Prerequisites
 
 OPSLite requires OMNeT++ (version 5.4.1) and the INET Framework (version 4.0.0). 
 The OMNeT++ simulator and the IDE can be found at the [OMNeT++ site](https://www.omnetpp.org). Once the
@@ -27,8 +27,8 @@ from the [INET site](https://inet.omnetpp.org). Here are the 2 important prerequ
    option - `Help -> Install Simulation Models...`
 
 
-Installing OPSLite
-------------------
+## Installing OPSLite
+
 Once OMNeT++ IDE and INET4 are installed and built, follows the following steps to install
 [OPSLite](https://github.com/ComNets-Bremen/OPSLite). 
 
@@ -42,8 +42,8 @@ Once OMNeT++ IDE and INET4 are installed and built, follows the following steps 
 4. Build the OPSLite project using - `Project -> Build Project` (should not have any errors or warnings after building)
 
 
-Running OPSLite
----------------
+## Running OPSLite
+
 To run simulation, check the `omnetpp.ini` and the `OPSLiteNetwork.ned` given (in `simulations` folder), to create your own
 scenario. Here are the basic steps
 
@@ -55,58 +55,11 @@ scenario. Here are the basic steps
 
 
 
-Checking Results
-----------------
-Based on the standard configuration, the raw results (vector and scalar) collected after a simulation run 
-are located in the `simulation/results` folder. Double-click on the `.vec` file to create the results
-file (`.anf` file). For more information, check Chapter 10 of the [IDE User Guide](https://www.omnetpp.org/doc/omnetpp/UserGuide.pdf)
-
-
-
-Available Results (Statistics)
-------------------------------
-There are a set of network-level results collected in every simulation run. Here are those results.
-
-- Statistics from the Application Layer
-1. `likedDataBytesReceivedSum` - Liked data bytes received by all nodes
-
-2. `nonLikedDataBytesReceivedSum` - Non-liked data bytes received by all nodes
-
-3. `duplicateDataBytesReceivedSum` - Duplicate (liked & non-liked) data bytes received by all nodes
-
-4. `likedDataBytesReceivableByAllNodesSum` - Liked data bytes that are possible to be received by all nodes
-
-5. `nonLikedDataBytesReceivableByAllNodesSum` - Non-liked data bytes that are possible to be received by all nodes
-
-6. `dataDelay` - Delivery delay of data (liked and non-liked) by all nodes
-
-7. `deliveryRatio` - Delivery ratio of data (liked and non-liked) by all nodes
-
-
-- Statistics from the Forwarding Layer
-
-1. `dataBytesReceivedSum` - Data bytes received by all nodes in the network 
-        
-2. `sumVecBytesReceivedSum` - Summary vectors bytes received by all nodes
-
-3. `dataReqBytesReceivedSum` - Data request bytes received by all nodes
-
-4. `totalBytesReceivedSum` - Total bytes received by all nodes
-
-5. `cacheBytesRemovedSum` - Cache removals in bytes by all nodes
-
-6. `cacheBytesAddedSum` - Cache additions in bytes by all nodes
-
-7. `cacheBytesUpdatedSum` - Cache updates in bytes by all nodes
-
-
-
-
-Node Architecture
------------------
+## Node Architecture
 
 The architecture of a node uses a number of protocol layers which can be configured
-based on the scenario considered. Generally, every node has the following layers.
+based on the scenario considered. The node model is defined in the `OPSNode.ned` file.
+Generally, an OPSNode has the following protocol layers.
 
 
                            +------------------------+
@@ -154,8 +107,85 @@ associated with each layer.
 
 
 
-Help
-----
+## Checking Results
+
+Based on the standard configuration, the raw results (vector and scalar) collected after a simulation run 
+are located in the `simulation/results` folder. Double-click on the `.vec` file to create the results
+file (`.anf` file). For more information, check Chapter 10 of the [IDE User Guide](https://www.omnetpp.org/doc/omnetpp/UserGuide.pdf)
+
+
+
+## Available Results (Statistics)
+
+There are a set of network-level results collected in every simulation run. Here are those results.
+
+### Statistics from the Application Layer
+
+1. `likedDataBytesReceivedSum` - Liked data bytes received by all nodes
+
+2. `nonLikedDataBytesReceivedSum` - Non-liked data bytes received by all nodes
+
+3. `duplicateDataBytesReceivedSum` - Duplicate (liked & non-liked) data bytes received by all nodes
+
+4. `likedDataBytesReceivableByAllNodesSum` - Liked data bytes that are possible to be received by all nodes
+
+5. `nonLikedDataBytesReceivableByAllNodesSum` - Non-liked data bytes that are possible to be received by all nodes
+
+6. `dataDelay` - Delivery delay of data (liked and non-liked) by all nodes
+
+7. `deliveryRatio` - Delivery ratio of data (liked and non-liked) by all nodes
+
+
+### Statistics from the Forwarding Layer
+
+1. `dataBytesReceivedSum` - Data bytes received by all nodes in the network 
+        
+2. `sumVecBytesReceivedSum` - Summary vectors bytes received by all nodes
+
+3. `dataReqBytesReceivedSum` - Data request bytes received by all nodes
+
+4. `totalBytesReceivedSum` - Total bytes received by all nodes
+
+5. `cacheBytesRemovedSum` - Cache removals in bytes by all nodes
+
+6. `cacheBytesAddedSum` - Cache additions in bytes by all nodes
+
+7. `cacheBytesUpdatedSum` - Cache updates in bytes by all nodes
+
+
+
+## Important Model Parameters
+
+The following list provides some of the most important parameters of the different models 
+in OPSLite. All these parameters are configurable using the `omnetpp.ini`. Not all parameters 
+are listed here. Please check the respective model's `.ned` file to see all the parameters.
+
+### Parameters in `OPSLiteNetwork.ned`
+
+1. `numNodes` - The total number of nodes in the network
+2. Network level statistics
+
+
+### Parameters in `KHeraldApp`
+
+1. `dataGenerationInterval` - Defines how often (in seconds) a data gets injected into the network
+2. `dataSizeInBytes` - The payload size in bytes of a data packet
+
+
+### Parameters in `KEpidemicRoutingLayer`
+
+1. `maximumCacheSize` - The size of the cache maintained by each node in bytes
+2. `maximumHopCount` - The maximum hops that a data packet is allowed to travel (be forwarded) before being discarded
+
+
+### Parameters in `KWirelessLayer`
+
+1. `wirelessRange` - The wireless range of each node's wireless interface
+2. `bandwidthBitRate` - Communication bit rate of the wireless interface
+
+
+
+## Help
 
 If you have any question or clarifications related to OMNeT++, please check the documentation provided at the [OMNeT++ site](https://www.omnetpp.org) and
 [INET](https://inet.omnetpp.org) sites. Here are the important documents.
@@ -171,8 +201,8 @@ If you have any question or clarifications related to OMNeT++, please check the 
 4. INET Mobility Models - [Node Mobility](https://inet.omnetpp.org/docs/users-guide/ch-mobility.html)
 
 
-Questions or Comments
----------------------
+
+## Questions or Comments
 
 If you have any comments or suggestions, we are very glad to hear them. Please write to us using any of the e-mail adresses below.
 
