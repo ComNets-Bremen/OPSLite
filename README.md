@@ -104,16 +104,24 @@ associated with each layer.
    
 5. Mobility implements the movements of the mobile nodes in the scenarios. It can use any
    of the mobility models vailable in the INET4 Framework. In OPSLite, `omnetpp.ini` is
-   configured to use Random Waypoint (`RandomWaypointMobility`) mobility model.
+   configured to use BonnMotion (`BonnMotionMobility`) mobility model. Some sample traces
+   with SLAW mobility (`trace-slaw-01.movements`, ...) are available in the 
+   `simulations` folder.
 
 
 
 ## Checking Results
 
 Based on the standard configuration, the raw results (vector and scalar) collected after a simulation run 
-are located in the `simulation/results` folder. Double-click on the `.vec` file to create the results
-file (`.anf` file). For more information, check Chapter 10 of the [IDE User Guide](https://www.omnetpp.org/doc/omnetpp/UserGuide.pdf)
+are located in the `simulation/results` folder. Below is a brief (high-level) procedure to create your charts
+using the IDE. 
 
+1. In the `simulation/results` folder, create an `Analysis File` (`New -> Analysis File (anf)`)
+2. Add the created results files (`*.vec` or `*.sca`) to the created file
+3. Create datasets with the data you want plotted in every graph
+4. Plot them using an appropriate chart type (Line, Bar, etc.)
+
+For more information, check Chapter 10 of the [IDE User Guide](https://www.omnetpp.org/doc/omnetpp/UserGuide.pdf)
 
 
 ## Available Results (Statistics)

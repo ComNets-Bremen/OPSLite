@@ -5,7 +5,8 @@ import inet.mobility.contract.IMobility;
 module OPSNode
 {
     parameters:
-
+		@networkNode();
+		
         // unique node identifier
         int nodeID;
 
