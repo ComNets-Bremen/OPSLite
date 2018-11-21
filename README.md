@@ -215,6 +215,19 @@ If you have any question or clarifications related to OMNeT++, please check the 
 
 
 
+## Known Problems
+
+### Problem: Undefined symbols when building OPSLite on Windows
+
+- Description: With OMNeT++ 5.4.1 IDE on Windows, the building fails with undefined symbols pointing 
+  to the IMobility interface used. We found this to be due to OMNeT++ being setup by default to use the 
+  clang compiler. 
+- Solution: Change the configure.user file to use gcc by setting "PREFER_CLANG=no" and rebuilding OMNeT++ and all 
+  the models installed (including INET). Check [Install Guide](https://www.omnetpp.org/doc/omnetpp/InstallGuide.pdf)
+  for further information.
+
+
+
 ## Questions or Comments
 
 If you have any comments or suggestions, we are very glad to hear them. Please write to us using any of the e-mail adresses below.
@@ -223,4 +236,7 @@ If you have any comments or suggestions, we are very glad to hear them. Please w
   - Jens Dede (jd@comnets.uni-bremen.de)
   - Anna Förster (anna.foerster@comnets.uni-bremen.de)
   - Vishnupriya Parimalam (vp@fb1.uni-bremen.de)
- 
+  
+  
+  
+  
