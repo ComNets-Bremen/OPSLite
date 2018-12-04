@@ -7,9 +7,9 @@ can be developed and plugged in. OPSLite is a scaled-down, light-weight version 
 [OPS](https://github.com/ComNets-Bremen/OPS), available at Github.
 
 The following sections provide details of the models available and about
-the installtion. *Unlike [OPS](https://github.com/ComNets-Bremen/OPS) which was purely
-a command-line simulator, OPSLite is meant to run in the OMNeT++ IDE and as well as on 
-the command-line*.
+the installation. **Unlike [OPS](https://github.com/ComNets-Bremen/OPS) which was purely
+a command-line simulator, OPSLite is meant to be run in the OMNeT++ IDE and as well as on 
+the command-line**.
 
 
 ## Prerequisites
@@ -88,7 +88,7 @@ Generally, an OPSNode has the following protocol layers.
                            +-----------|------------+
                                        |
 
-Each of the above layers can be configured throufgh their parameters to behave as required. Here are the models
+Each of the above layers can be configured through their parameters to behave as required. Here are the models
 associated with each layer.
 
 1. Application Layer consist of the `KHeraldApp` application that classifies data items as liked and non-liked
@@ -97,17 +97,22 @@ associated with each layer.
 2. Opportunistic Networking Layer conist of the `KEpidemicRoutingLayer` which is used to forward data
    in an opportunistic network
 
-3. Link Adaptation Layer is a simple passthru-layer (`KLinkAdaptLayer`) intended to be extended in the future.
+3. Link Adaptation Layer is a simple pass-through layer (`KLinkAdaptLayer`) intended to be extended in the future.
 
 4. Link Layer consist of the `KWirelessInterface` model that performs simple wireless
    communications.
    
 5. Mobility implements the movements of the mobile nodes in the scenarios. It can use any
-   of the mobility models vailable in the INET4 Framework. In OPSLite, `omnetpp.ini` is
+   of the mobility models available in the INET4 Framework. In OPSLite, `omnetpp.ini` is
    configured to use BonnMotion (`BonnMotionMobility`) mobility model. Some sample traces
    with SLAW mobility (`trace-slaw-01.movements`, ...) are available in the 
    `simulations` folder.
 
+The following picture shows an example configuration of a node as seen in the OMNeT++ IDE.
+
+<p align="center">
+  <img src="res/omnet-node-arch.png" width="536px" height="800px"/>
+</p>
 
 
 ## Checking Results
@@ -164,14 +169,24 @@ There are a set of network-level results collected in every simulation run. Here
 
 ### Statistics from the Wireless Interface Layer
 
-1. `neighbourhoodSize` - Size of nodes in the wireless neghbourhood
+1. `neighbourhoodSize` - Size of nodes in the wireless neighbourhood
+
+The following graph shows the progress of the Delivery Ratio (`deliveryRatio`) for two mobility traces based on the
+SLAW mobility model. The graph has been created using the statistics graphing capability in OMNeT++ IDE.
+
+
+<p align="center">
+  <img src="res/delivery-ratio-slaw-traces.png" width="800px" height="420px"/>
+</p>
+
+
 
 
 ## Important Model Parameters
 
 The following list provides some of the most important parameters of the different models 
-in OPSLite. All these parameters are configurable using the `omnetpp.ini`. *Not all parameters 
-are listed here*. Please check the respective model's `.ned` file to see all the parameters.
+in OPSLite. All these parameters are configurable using the `omnetpp.ini`. **Not all parameters 
+are listed here**. Please check the respective model's `.ned` file to see all the parameters.
 
 ### Parameters in `OPSLiteNetwork.ned`
 
