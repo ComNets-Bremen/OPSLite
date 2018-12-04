@@ -232,14 +232,18 @@ If you have any question or clarifications related to OMNeT++, please check the 
 
 ## Known Problems
 
+
+### Problem: IMobility not found
+
+- Description: When building OPSLite, the compilation fails, complaining about the inability to find INET mobility headers.
+- Solution: Since OPSLite uses the mobility headers of INET, the referenced projects section (`Properties -> Project References`) has to point to the exact INET version installed in your workspace. Sometimes, INET is installed as `inet4` or `inet`. So, make sure that the right INET entry is ticked. Untick all other unwanted projects.  
+
+
 ### Problem: Undefined symbols when building OPSLite on Windows
 
-- Description: With OMNeT++ 5.4.1 IDE on Windows, the building fails with undefined symbols pointing 
-  to the IMobility interface used. We found this to be due to OMNeT++ being setup by default to use the 
-  clang compiler. 
-- Solution: Change the configure.user file to use gcc by setting "PREFER_CLANG=no" and rebuilding OMNeT++ and all 
-  the models installed (including INET). Check [Install Guide](https://www.omnetpp.org/doc/omnetpp/InstallGuide.pdf)
-  for further information.
+- Description: With OMNeT++ 5.4.1 IDE on Windows, the building fails with undefined symbols pointing to the IMobility interface used. We found this to be due to OMNeT++ being setup by default to use the `clang` compiler. 
+- Solution: Change the configure.user file to use gcc by setting "PREFER_CLANG=no" and rebuilding OMNeT++ and all the models installed (including INET). Check [Install Guide](https://www.omnetpp.org/doc/omnetpp/InstallGuide.pdf) for further information.
+
 
 
 
