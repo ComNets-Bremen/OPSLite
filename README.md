@@ -111,7 +111,7 @@ associated with each layer.
 The following picture shows an example configuration of a node as seen in the OMNeT++ IDE.
 
 <p align="center">
-  <img src="res/omnet-node-arch.png" width="536px" height="800px"/>
+  <img src="res/omnet-node-arch.png" width="268px" height="400px"/>
 </p>
 
 
@@ -176,7 +176,7 @@ SLAW mobility model. The graph has been created using the statistics graphing ca
 
 
 <p align="center">
-  <img src="res/delivery-ratio-slaw-traces.png" width="800px" height="420px"/>
+  <img src="res/delivery-ratio-slaw-traces.png" width="600px" height="315px"/>
 </p>
 
 
