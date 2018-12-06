@@ -58,11 +58,11 @@ private:
     KBaseNodeInfo *ownNodeInfo;
     list<KBaseNodeInfo*> allNodeInfoList;
     queue<cMessage*> packetQueue;
-    cMessage *sendPacketTimeoutEvent;
+    cMessage *sendPacketTimeoutEvent = NULL;
 
     list<KBaseNodeInfo*> currentNeighbourNodeInfoList;
     list<KBaseNodeInfo*> atTxNeighbourNodeInfoList;
-    cMessage *currentPendingMsg;
+    cMessage *currentPendingMsg = NULL;
 
     void setupSendingMsg(cMessage *msg);
     void sendPendingMsg();

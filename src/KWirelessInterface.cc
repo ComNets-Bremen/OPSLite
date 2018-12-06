@@ -334,11 +334,12 @@ string KWirelessInterface::getDestinationAddress(cMessage *msg)
 void KWirelessInterface::finish()
 {
     // remove send msg timeout
-    if (sendPacketTimeoutEvent->isScheduled()) {
-        cancelEvent(sendPacketTimeoutEvent);
+    if (sendPacketTimeoutEvent != NULL) {
+        if (sendPacketTimeoutEvent->isScheduled()) {
+            cancelEvent(sendPacketTimeoutEvent);
+        }
+        delete sendPacketTimeoutEvent;
     }
-    delete sendPacketTimeoutEvent;
-
     // remove all messages
     while(!packetQueue.empty()) {
         cMessage *nextMsg = packetQueue.front();

@@ -204,11 +204,13 @@ void KHeraldApp::handleMessage(cMessage *msg)
 
 void KHeraldApp::finish()
 {
+    if (appRegistrationEvent->isScheduled())
+        cancelEvent(appRegistrationEvent);
     delete appRegistrationEvent;
 
-    cancelEvent(dataTimeoutEvent);
+    if (dataTimeoutEvent->isScheduled())
+        cancelEvent(dataTimeoutEvent);
     delete dataTimeoutEvent;
-
 
     myLikenesses.clear();
     if (popularityList.size() > 0)

@@ -24,8 +24,8 @@ from the [INET site](https://inet.omnetpp.org). Here are the 2 important prerequ
 
 2. Run the OMNet++ IDE and create a new workspace
 
-3. Install and build INET4 (version 4.0.0) in the newly created workspace using
-   option - `Help -> Install Simulation Models...`
+3. Install and build INET (version 4.0.0) in the newly created workspace using
+   option - `Help -> Install Simulation Models...` or another means (e.g., at workspace creation, using a downloaded archive, etc.)
 
 
 ## Installing OPSLite
@@ -37,10 +37,11 @@ Once OMNeT++ IDE and INET4 are installed and built, follows the following steps 
 
 2. If [OPSLite](https://github.com/ComNets-Bremen/OPSLite) downloaded as a ZIP file, expand the ZIP file
 
-3. Run the OMNeT++ IDE, and import [OPSLite](https://github.com/ComNets-Bremen/OPSLite) (`File -> Import... -> General -> File System`) into the OMNeT++
-   workspace (where INET4 is installed)
+3. Run the OMNeT++ IDE, and import [OPSLite](https://github.com/ComNets-Bremen/OPSLite) (`File -> Import... -> General -> File System`) into the OMNeT++ workspace (where INET is also a project)
 
-4. Build the OPSLite project using - `Project -> Build Project` (should not have any errors or warnings after building)
+4. Tick INET as a referenced project (`Properties -> Project References`). Make the exact INET version installed is ticked (remove other ticks)
+
+5. Build the OPSLite project using - `Project -> Build Project` (should not have any errors or warnings after building)
 
 
 ## Running OPSLite
@@ -233,7 +234,7 @@ If you have any question or clarifications related to OMNeT++, please check the 
 ## Known Problems
 
 
-### Problem: IMobility not found
+### Problem: IMobility headers not found
 
 - Description: When building OPSLite, the compilation fails, complaining about the inability to find INET mobility headers.
 - Solution: Since OPSLite uses the mobility headers of INET, the referenced projects section (`Properties -> Project References`) has to point to the exact INET version installed in your workspace. Sometimes, INET is installed as `inet4` or `inet`. So, make sure that the right INET entry is ticked. Untick all other unwanted projects.  
@@ -249,7 +250,7 @@ If you have any question or clarifications related to OMNeT++, please check the 
 
 ## Questions or Comments
 
-If you have any comments or suggestions, we are very glad to hear them. Please write to us using any of the e-mail adresses below.
+If you have any comments or suggestions, we will be very glad to hear them. Please write to us using any of the e-mail adresses below.
 
   - Asanga Udugama (adu@comnets.uni-bremen.de)
   - Jens Dede (jd@comnets.uni-bremen.de)
