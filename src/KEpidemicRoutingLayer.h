@@ -40,6 +40,7 @@ private:
     int maximumHopCount;
     double maximumRandomBackoffDuration;
     bool useTTL;
+    int usedRNG;
 
     int numEventsHandled;
 
