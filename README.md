@@ -33,15 +33,11 @@ from the [INET site](https://inet.omnetpp.org). Here are the 2 important prerequ
 Once OMNeT++ IDE and INET4 are installed and built, follows the following steps to install
 [OPSLite](https://github.com/ComNets-Bremen/OPSLite). 
 
-1. Download the Github repository of [OPSLite](https://github.com/ComNets-Bremen/OPSLite)
+1. Run the OMNeT++ IDE, and import [OPSLite](https://github.com/ComNets-Bremen/OPSLite) (`File -> Import... -> Projects from Git -> Clone URI ->`) into the OMNeT++ workspace (where INET is also a project)
 
-2. If [OPSLite](https://github.com/ComNets-Bremen/OPSLite) downloaded as a ZIP file, expand the ZIP file
+2. Tick INET as a referenced project in OPSLite (`Properties -> Project References`). Tick the exact INET version installed (remove other ticks)
 
-3. Run the OMNeT++ IDE, and import [OPSLite](https://github.com/ComNets-Bremen/OPSLite) (`File -> Import... -> General -> File System`) into the OMNeT++ workspace (where INET is also a project)
-
-4. Tick INET as a referenced project (`Properties -> Project References`). Make the exact INET version installed is ticked (remove other ticks)
-
-5. Build the OPSLite project using - `Project -> Build Project` (should not have any errors or warnings after building)
+3. Build the OPSLite project using - `Project -> Build Project` (there should NOT be any errors or warnings after building)
 
 
 ## Running OPSLite
