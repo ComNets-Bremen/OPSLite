@@ -79,6 +79,7 @@ class KHeraldApp : public cSimpleModule
         simsignal_t totalDataBytesReceivableByAllNodesSignal;
 
         simsignal_t dataDelaySignal;
+        simsignal_t dataDelayCountSignal;
 };
 
 #endif /* KHERALDAPP_H_ */

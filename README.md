@@ -142,7 +142,7 @@ There are a set of network-level results collected in every simulation run. Here
 
 5. `nonLikedDataBytesReceivableByAllNodesSum` - Non-liked data bytes that are possible to be received by all nodes
 
-6. `dataDelay` - Delivery delay of data (liked and non-liked) by all nodes
+6. `avgDataDelay` - Average delivery delay of data (liked and non-liked) by all nodes
 
 7. `deliveryRatio` - Delivery ratio of data (liked and non-liked) by all nodes
 

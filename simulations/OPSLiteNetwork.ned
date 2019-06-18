@@ -25,10 +25,10 @@ network OPSLiteNetwork
         @statistic[nonLikedDataBytesReceivableByAllNodesSum](source=sum(nonLikedDataBytesReceivableByAllNodes);record=max,last,vector);
 
         // stat: delivery delay of data (liked and non-liked) by all nodes
-        @statistic[dataDelay](source=dataDelay;record=max,min,mean,vector,histogram);
+        @statistic[avgDataDelay](source=sum(dataDelay)/sum(dataDelayCount);record=last,vector);
 
         // stat: delivery ratio of data (liked and non-liked) by all nodes
-        @statistic[deliveryRatio](source=sum(totalDataBytesReceived)/sum(totalDataBytesReceivableByAllNodes);record=max,min,vector);
+        @statistic[deliveryRatio](source=sum(totalDataBytesReceived)/sum(totalDataBytesReceivableByAllNodes);record=last,vector);
 
 
         // from forwarding layer -> epidemic routing

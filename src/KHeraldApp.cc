@@ -102,6 +102,7 @@ void KHeraldApp::initialize(int stage)
         totalDataBytesReceivableByAllNodesSignal = registerSignal("totalDataBytesReceivableByAllNodes");
 
         dataDelaySignal = registerSignal("dataDelay");
+        dataDelayCountSignal = registerSignal("dataDelayCount");
 
     } else {
         EV_FATAL << KHERALDAPP_SIMMODULEINFO << "Something is radically wrong\n";
@@ -190,6 +191,7 @@ void KHeraldApp::handleMessage(cMessage *msg)
             }
             emit(totalDataBytesReceivedSignal, (long) dataSizeInBytes);
             emit(dataDelaySignal, (simTime().dbl() - dataMsg->getInjectedTime()));
+            emit(dataDelayCountSignal, (long) 1);
         }
 
         delete msg;

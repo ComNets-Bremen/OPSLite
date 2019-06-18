@@ -45,6 +45,7 @@ simple KHeraldApp
         @signal[totalDataBytesReceivableByAllNodes](type=long);
 
         @signal[dataDelay](type=simtime_t);
+        @signal[dataDelayCount](type=long);
 
     gates:
 
